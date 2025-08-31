@@ -216,7 +216,7 @@ const Navigation = () => {
             >
               <Link to="/">
                 <div className="text-white font-bold text-xl sm:text-2xl">
-                  Roadmap
+                  Roadmaps by Subhayu
                 </div>
               </Link>
             </motion.div>
@@ -328,7 +328,7 @@ const Navigation = () => {
             {/* Social Links */}
             <div className="flex items-center space-x-5">
               <motion.a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/in/subhayu-das"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orange-400 transition-colors duration-300"
@@ -349,7 +349,7 @@ const Navigation = () => {
             </div>
 
             <a
-              href="https://api.whatsapp.com/send?phone=919810724697&text=Hey"
+              href="https://api.whatsapp.com/send?phone=9123388359&text=Hey"
               target="_blank"
               rel="noopener noreferrer"
               className="relative inline-flex h-12 overflow-hidden items-center justify-center rounded-xl px-6 font-medium group"
@@ -444,7 +444,7 @@ const Navigation = () => {
                 variants={menuItemVariants}
               >
                 <motion.a
-                  href="https://linkedin.com"
+                  href="https://linkedin.com/in/subhayu-das"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-orange-400 transition-colors duration-300"
@@ -459,7 +459,7 @@ const Navigation = () => {
 
               <motion.div variants={menuItemVariants} className="pt-2">
                 <a
-                  href="https://api.whatsapp.com/send?phone=919123388359&text=Hey"
+                  href="https://api.whatsapp.com/send?phone=9123388359text=Hey"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleLinkClick}

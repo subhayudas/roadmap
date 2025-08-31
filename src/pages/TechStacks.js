@@ -1,130 +1,207 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './techStacks.css';
 
-export default function TechStacks(){
+export default function TechStacks() {
+  const [expandedSections, setExpandedSections] = useState({
+    dynamic: true
+  });
 
-return(
-<>
-  <h1>
-       What are you trying to build?
-  </h1>
+  const toggleSection = (section) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
 
-<h2>Static Site</h2>
-<section className='staticSection'>
-    <div className='stackContainer'>
-        <img src="/img/js.png" alt="js" />
-        <img src="/img/css.png" alt="css" />
-        <img src="/img/html.png" alt="html" />
-    </div>
+  const techStacks = {
+    dynamic: {
+      title: "Dynamic Web Applications",
+      description: "Full-stack applications with server-side processing, databases, and dynamic content generation.",
+      technologies: [
+        {
+          name: "JavaScript Stacks",
+          items: [
+            {
+              name: "MERN Stack",
+              description: "MongoDB, Express.js, React, Node.js",
+              technologies: [
+                { name: "MongoDB", image: "/img/mongodb.png" },
+                { name: "Express.js", image: "/img/Expressjs.png" },
+                { name: "React", image: "/img/react.png" },
+                { name: "Node.js", image: "/img/node.png" }
+              ]
+            },
+            {
+              name: "MEAN Stack",
+              description: "MongoDB, Express.js, Angular, Node.js",
+              technologies: [
+                { name: "MongoDB", image: "/img/mongodb.png" },
+                { name: "Express.js", image: "/img/Expressjs.png" },
+                { name: "Angular", image: "/img/angular.png" },
+                { name: "Node.js", image: "/img/node.png" }
+              ]
+            },
+            {
+              name: "Vue.js Stack",
+              description: "Vue.js, Express.js, MongoDB, Node.js",
+              technologies: [
+                { name: "Vue.js", image: "/img/vue.png" },
+                { name: "Express.js", image: "/img/Expressjs.png" },
+                { name: "MongoDB", image: "/img/mongodb.png" },
+                { name: "Node.js", image: "/img/node.png" }
+              ]
+            }
+          ]
+        },
+        {
+          name: "Traditional Stacks",
+          items: [
+            {
+              name: "LAMP Stack",
+              description: "Linux, Apache, MySQL, PHP",
+              technologies: [
+                { name: "Linux", image: "/img/linux.jpg" },
+                { name: "Apache", image: "/img/apache.png" },
+                { name: "MySQL", image: "/img/mysql.png" },
+                { name: "PHP", image: "/img/php.png" }
+              ]
+            },
+            {
+              name: "Django Stack",
+              description: "Python, Django, Apache, MySQL",
+              technologies: [
+                { name: "Python", image: "/img/python.png" },
+                { name: "Django", image: "/img/django.png" },
+                { name: "Apache", image: "/img/apache.png" },
+                { name: "MySQL", image: "/img/mysql.png" }
+              ]
+            },
+            {
+              name: "Ruby on Rails",
+              description: "Ruby, Rails, MySQL, Linux",
+              technologies: [
+                { name: "Ruby", image: "/img/ruby.png" },
+                { name: "MySQL", image: "/img/mysql.png" },
+                { name: "Linux", image: "/img/linux.jpg" }
+              ]
+            }
+          ]
+        },
+        {
+          name: "Enterprise Stacks",
+          items: [
+            {
+              name: "ASP.NET Stack",
+              description: "C#, .NET, SQL Server, Azure",
+              technologies: [
+                { name: "C#", image: "/img/csharp.png" },
+                { name: ".NET", image: "/img/dotnet.png" },
+                { name: "SQL Server", image: "/img/sql.png" },
+                { name: "Azure", image: "/img/azure.png" }
+              ]
+            },
+            {
+              name: "Java Stack",
+              description: "Java, Spring, Oracle, Linux",
+              technologies: [
+                { name: "Java", image: "/img/java.png" },
+                { name: "Oracle", image: "/img/oracle.png" },
+                { name: "Linux", image: "/img/linux.jpg" }
+              ]
+            }
+          ]
+        },
+        {
+          name: "Additional Technologies",
+          items: [
+            {
+              name: "Firebase Stack",
+              description: "Firebase, React/Vue, JavaScript",
+              technologies: [
+                { name: "Firebase", image: "/img/firebase.jpg" },
+                { name: "React", image: "/img/react.png" },
+                { name: "JavaScript", image: "/img/js.png" }
+              ]
+            },
+            {
+              name: "Redis Cache",
+              description: "Redis, Node.js, Express.js",
+              technologies: [
+                { name: "Redis", image: "/img/redis.png" },
+                { name: "Node.js", image: "/img/node.png" },
+                { name: "Express.js", image: "/img/Expressjs.png" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  };
 
-    <div className="stackContainer">
-        <img src="/img/jekyllrb.png" alt="jekyllrb" />
-        <img src="/img/hugo.jpg" alt="hugo" />
-        <img src="/img/gatsby.png" alt="gatsby" />
-    </div>
-</section>
+  return (
+    <div className="tech-stacks-container">
+      <h1 className="main-title">Technology Stack Roadmap</h1>
+      <p className="main-description">
+        Choose the right technology stack based on your project requirements and goals
+      </p>
 
-<p>
-    Static sites are usually very simple sites, that require minimal files, the content is not dynamic.
-    They are ideal for small websites.
-</p>
-
-<h2>Dynamic site</h2>
-    
-    <section className='staticSection'>
-        <div className='stackContainer'>
-            <span>MERN</span>
-            <img src="/img/mongodb.png" alt="mongodb" />
-            <img src="/img/Expressjs.png" alt="express" />
-            <img src="/img/react.png" alt="react" />
-            <img src="/img/node.png" alt="node" />
+      {Object.entries(techStacks).map(([key, section]) => (
+        <div key={key} className="tech-section">
+          <div 
+            className="section-header"
+            onClick={() => toggleSection(key)}
+          >
+            <h2>{section.title}</h2>
+            <span className={`expand-icon ${expandedSections[key] ? 'expanded' : ''}`}>
+              ▼
+            </span>
+          </div>
+          
+          {expandedSections[key] && (
+            <div className="section-content">
+              <p className="section-description">{section.description}</p>
+              
+              <div className="tech-tree">
+                {section.technologies.map((category, categoryIndex) => (
+                  <div key={categoryIndex} className="tech-category">
+                    <h3 className="category-title">{category.name}</h3>
+                    
+                    <div className="tech-items">
+                      {category.items.map((item, itemIndex) => (
+                        <div key={itemIndex} className="tech-item">
+                          {item.technologies ? (
+                            // Stack with multiple technologies
+                            <div className="tech-stack">
+                              <div className="stack-header">
+                                <h4>{item.name}</h4>
+                                <p>{item.description}</p>
+                              </div>
+                              <div className="stack-technologies">
+                                {item.technologies.map((tech, techIndex) => (
+                                  <div key={techIndex} className="tech-logo">
+                                    <img src={tech.image} alt={tech.name} />
+                                    <span>{tech.name}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            // Single technology
+                            <div className="single-tech">
+                              <img src={item.image} alt={item.name} />
+                              <span>{item.name}</span>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-
-        <div className='stackContainer'>
-            <span>MEAN</span>
-            <img src="/img/mongodb.png" alt="mongodb" />
-            <img src="/img/Expressjs.png" alt="express" />
-            <img src="/img/angular.png" alt="angular" />
-            <img src="/img/node.png" alt="node" />
-        </div>
-
-        <div className='stackContainer'>
-            <span>LAMP</span>
-            <img src="/img/linux.jpg" alt="linux" />
-            <img src="/img/apache.png" alt="apache" />
-            <img src="/img/mysql.png" alt="mysql" />
-            <img src="/img/php.png" alt="php" />
-        </div>
-
-        <div className='stackContainer'>
-            <span>Django</span>
-            <img src="/img/python.png" alt="python" />
-            <img src="/img/django.png" alt="django" />
-            <img src="/img/apache.png" alt="apache" />
-            <img src="/img/mysql.png" alt="mysql" />
-        </div>
-
-        <div className='stackContainer'>
-            <span>Ruby on<br />Rails</span>
-            <img src="/img/react.png" alt="react" />
-            <img src="/img/ruby.png" alt="ruby" />
-            <img src="/img/mysql.png" alt="mysql" />
-        </div>
-
-        <div className='stackContainer'>
-            <span>ASP.Net</span>
-            <img src="/img/csharp.png" alt="C#" />
-            <img src="/img/react.png" alt="react" />
-            <img src="/img/sql.png" alt="sql" />
-            <img src="/img/azure.png" alt="azure" />
-        </div>
-    </section>
-    <p>
-        Based on these differences, the choice between Ruby on Rails and Express will 
-        depend on the specific needs of your project. If you need to build a high-performance
-        web application and have experience with JavaScript, Express may be the better choice.
-        On the other hand, if you want a more opinionated framework that's easier to use and has
-        a larger community, Ruby on Rails may be the way to go.
-    </p>
-
-<h2>E-Commerce</h2>
-<section className='staticSection'>
-    <div className='eCommerceContainer'>
-        <img src="/img/woocommerce.png" alt="woocommerce" />
+      ))}
     </div>
-
-    <div className='eCommerceContainer'>
-        <img src="/img/wp.png" alt="wordpress" />
-    </div>
-
-    <div className='eCommerceContainer'>
-        <img src="/img/shopify.png" alt="shopify" />
-    </div>
-
-    <div className='eCommerceContainer'>
-        <img src="/img/magento.png" alt="magento" />
-    </div>
-
-    <div className='eCommerceContainer'>    
-        <img src="/img/openCart.png" alt="opencart" />
-    </div>
-
-    <div className='eCommerceContainer'>
-        <img src="/img/prestaShop.png" alt="prestaShop" />    
-    </div>
-
-    <div className='eCommerceContainer'>    
-        <img src="/img/bigCommerce.png" alt="bigCommerce" />
-    </div>
-
-</section>
-
-<p>
-    These are just a few examples of the tech solutions that can be used
-    to create an e-commerce website. Each platform has its own strengths and weaknesses, so
-    it's important to evaluate each one carefully before making a decision.
-</p>
-
-</>
-)
+  );
 }
