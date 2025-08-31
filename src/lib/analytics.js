@@ -98,7 +98,7 @@ export const trackTimeOnPage = (seconds) => {
 };
 
 // Export default for convenience
-export default {
+const analytics = {
   trackEvent,
   trackPageView,
   trackButtonClick,
@@ -108,3 +108,5 @@ export default {
   trackScrollDepth,
   trackTimeOnPage
 };
+
+export default analytics;
