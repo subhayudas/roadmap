@@ -1,0 +1,342 @@
+/* roadmapPages.css */
+*,*::before,*::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+}
+*::selection{
+  background: green;
+}
+
+:root{
+  --orangeColor: rgb(255, 77, 0);
+}
+
+body{
+  background-color: black;
+}
+
+.sectionWrapper{   
+  margin-top: 1rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 1rem;
+}
+
+/* Central vertical spine - REMOVED */
+/* .sectionWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: white;
+  z-index: 0;
+} */
+
+.sectionHeader{
+  color: white;
+  border: 1px solid white;
+  background-color: black;
+  width: fit-content;
+  margin: auto;
+  padding: 1rem;
+  border-radius: .5rem;
+  transition: .4s;
+  cursor: pointer;
+  z-index: 1;
+  position: relative;
+}
+.sectionHeader:hover{
+  color: var(--orangeColor);
+  border: 1px solid var(--orangeColor);
+  transform: scale(105%);
+  transition: color .2s, border .4s, transform .2s;
+}
+
+/* Left Container Styles */
+.containerLeft{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    padding-right: 5rem;
+    margin-left: auto;
+    position: relative;
+}
+/* Container connection lines - REMOVED */
+/* /* Container connection lines - REMOVED */
+/* .containerLeft::before{
+    content: '';
+    height: 50%;
+    width: 30px;
+    border: 1px solid white;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: -1%;
+    z-index: -1;
+}
+.containerLeft::after{
+    content: '';
+    height: 50%;
+    width: 30px;
+    border: 1px solid white;
+    border-bottom-width: 0;
+    border-right-width: 0;
+    border-top-left-radius: 1rem;
+    position: absolute;
+    margin: auto;
+    left: -30px;
+    bottom: 0;
+    z-index: -1;
+} */ */
+.containerLeft div{
+    border: 1px solid green;
+    border-radius: .5rem;
+    width: 30rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    transition: border .5s;
+}
+.containerLeft div:hover{
+    border: 1px solid lime;
+    transition: border .5s;
+}
+.containerLeft div:hover + hr{
+    border: 1px dashed var(--orangeColor);
+    transition: .3s;
+}
+.containerLeft div a{
+    color: white;
+    text-decoration: none;
+    transition: .2s;
+}
+.containerLeft div a:hover{
+    padding-left: .5rem;
+    color: var(--orangeColor);
+    transition: .2s;
+}
+/* Horizontal lines - REMOVED */
+/* .containerLeft hr{
+    width: 100%;
+    border: 1px dashed white;
+    transition: .3s;
+} */
+.containerLeft span{
+    border: 1px solid white;
+    border-radius: .5rem;
+    height: fit-content;
+    padding: .5rem;
+    width: fit-content;
+    white-space: nowrap;
+    z-index: 1;
+    background-color: black;
+}
+.containerLeft .noText{
+    padding: .5rem;
+    border-radius: 50%;
+}
+
+/* Right Container Styles */
+.containerRight{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    padding-left: 5rem;
+    position: relative;
+}
+/* Container connection lines - REMOVED */
+/* .containerRight::after{
+    content: '';
+    height: 50%;
+    width: 30px;
+    border: 1px solid white;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-right-radius: 1rem;
+    position: absolute;
+    margin: auto;
+    right: -30px;
+    top: 50%;
+}
+.containerRight::before{
+    content: '';
+    height: 50%;
+    width: 30px;
+    border: 1px solid white;
+    border-bottom-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    top: 0;
+} */
+.containerRight div{
+    border: 1px solid green;
+    border-radius: .5rem;
+    width: 30rem;
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;   
+    transition: border .5s;
+}
+.containerRight div:hover{
+    border: 1px solid lime;
+    transition: border .5s;
+}
+.containerRight div a{
+    color: white;
+    text-decoration: none;
+    transition: .2s;
+}
+.containerRight div a:hover{
+    padding-left: .5rem;
+    color: var(--orangeColor);
+    transition: .2s;
+}
+/* Horizontal lines - REMOVED */
+/* .containerRight hr{
+    width: 100%;
+    border: 1px dashed white;
+    transition: .3s;
+} */
+.containerRight div:hover + hr{
+    border: 1px dashed var(--orangeColor);
+    transition: .3s;
+}
+.containerRight span{
+    border: 1px solid white;
+    border-radius: .5rem;
+    height: fit-content;
+    padding: .5rem;
+    width: fit-content;
+    white-space: nowrap;
+    z-index: 1;
+    background-color: black;
+}
+.containerRight .noText{
+    padding: .5rem;
+    border-radius: 50%;
+}
+
+/* Responsive Design */
+@media screen and (max-width:1125px){
+    .containerLeft{
+        width: 50%;
+        padding-right: 1rem;
+        font-size: .9rem;
+    }
+    .containerRight{
+        width: 50%;
+        padding-left: 1rem;
+        font-size: .9rem;
+    }
+}
+
+@media screen and (max-width:650px){
+    .sectionWrapper{
+        gap: 2rem;
+    }
+    .containerLeft{
+        padding: 0;
+        flex-direction: column-reverse;
+        width: 100%;
+        gap: 1rem;
+        position: relative;
+    }
+    .containerLeft::before{
+        position: absolute;
+        top: 10px;
+        right: 0;
+        left: 0;
+        margin: auto;
+        z-index: -1;
+        width: 0;
+        height: 30%;
+    }
+    .containerLeft::after{
+        content: '';
+        width: 1px;
+        height: 30%;
+        position: absolute;
+        top: -115%;
+        right: 0;
+        left: 0;
+    }
+    .containerLeft div:hover + hr{
+        border:0;
+        transition: 0s;
+    }
+    .containerLeft hr{
+        width: 0;
+        border: none;
+    }
+    .containerLeft div{
+        width: 90%;
+        align-items: center;
+        gap: 1rem;
+        z-index: 1;
+        background-color: black;
+    }
+    .containerRight{
+        padding: 0;
+        flex-direction: column-reverse;
+        width: 100%;
+        gap: 1rem;
+    }
+    .containerRight::before{
+        position: absolute;
+        top: 10px;
+        right: 0;
+        left: 0;
+        margin: auto;
+        z-index: -1;
+        width: 0;
+        height: 30%;
+    }
+    .containerRight::after{
+        content: '';
+        width: 1px;
+        height: 40%;
+        position: absolute;
+        top: -30%;
+        right: 0;
+        left: 0;
+    }
+    .containerRight div:hover + hr{
+        border:0;
+        transition: 0s;
+    }
+    .containerRight hr{
+        width: 0;
+        border: none;
+    }
+    .containerRight div{
+        width: 90%;
+        align-items: center;
+        gap: 1rem;
+        z-index: 1;
+        background-color: black;
+    }
+    
+    /* Hide central spine on mobile */
+    .sectionWrapper::before {
+        display: none;
+    }
+}
