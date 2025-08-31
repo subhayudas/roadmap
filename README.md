@@ -294,9 +294,6 @@ The application will open at [http://localhost:3000](http://localhost:3000)
 - **Framer Motion** - Animation library
 - **Heroicons** - Icon library
 
-## 📝 License
-
-This project is licensed under the MIT License.
 
 ## 🤝 Contributing
 
