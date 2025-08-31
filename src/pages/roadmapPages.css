@@ -72,7 +72,6 @@ body{
     position: relative;
 }
 /* Container connection lines - REMOVED */
-/* /* Container connection lines - REMOVED */
 /* .containerLeft::before{
     content: '';
     height: 50%;
@@ -100,7 +99,7 @@ body{
     left: -30px;
     bottom: 0;
     z-index: -1;
-} */ */
+} */
 .containerLeft div{
     border: 1px solid green;
     border-radius: .5rem;

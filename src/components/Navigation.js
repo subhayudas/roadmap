@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
@@ -8,7 +8,6 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
 
   // Navigation items
   const navigationItems = [
@@ -81,34 +80,34 @@ const Navigation = () => {
     }
   };
 
-  // Link hover animation variants
-  const linkVariants = {
-    initial: { y: 0, scale: 1, rotateX: 0 },
-    hover: {
-      y: -5,
-      scale: 1.05,
-      rotateX: 10,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10
-      }
-    }
-  };
+  // Link hover animation variants (commented out as not currently used)
+  // const linkVariants = {
+  //   initial: { y: 0, scale: 1, rotateX: 0 },
+  //   hover: {
+  //     y: -5,
+  //     scale: 1.05,
+  //     rotateX: 10,
+  //     transition: {
+  //       type: "spring",
+  //       stiffness: 400,
+  //       damping: 10
+  //     }
+  //   }
+  // };
 
-  // Enhanced floating animation for navbar
-  const floatingNavVariants = {
-    initial: { y: 0, rotate: 0, scale: 1, x: 0 },
-    animate: {
-      y: 0,
-      rotate: 0,
-      scale: 1,
-      x: 0,
-      transition: {
-        duration: 0,
-      }
-    }
-  };
+  // Enhanced floating animation for navbar (commented out as not currently used)
+  // const floatingNavVariants = {
+  //   initial: { y: 0, rotate: 0, scale: 1, x: 0 },
+  //   animate: {
+  //     y: 0,
+  //     rotate: 0,
+  //     scale: 1,
+  //     x: 0,
+  //     transition: {
+  //       duration: 0,
+  //     }
+  //   }
+  // };
 
   // Mobile menu animation variants
   const mobileMenuVariants = {
