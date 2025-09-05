@@ -9,6 +9,7 @@ import Android from './pages/Android';
 import TechStacks from './pages/TechStacks';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './contexts/AuthContext';
 import { trackPageView } from './lib/analytics';
 
@@ -44,10 +45,26 @@ function App() {
                   />
                 </section>
               } />
-              <Route path="/frontend" element={<FrontEnd />} />
-              <Route path="/backend" element={<BackEnd />} />
-              <Route path="/android" element={<Android />} />
-              <Route path="/tech-stacks" element={<TechStacks />} />
+              <Route path="/frontend" element={
+                <ProtectedRoute>
+                  <FrontEnd />
+                </ProtectedRoute>
+              } />
+              <Route path="/backend" element={
+                <ProtectedRoute>
+                  <BackEnd />
+                </ProtectedRoute>
+              } />
+              <Route path="/android" element={
+                <ProtectedRoute>
+                  <Android />
+                </ProtectedRoute>
+              } />
+              <Route path="/tech-stacks" element={
+                <ProtectedRoute>
+                  <TechStacks />
+                </ProtectedRoute>
+              } />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
             </Routes>

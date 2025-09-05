@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useAuth } from '../contexts/AuthContext'
 import { UnicornBackground } from '../components/UnicornBackground'
@@ -9,6 +9,10 @@ const SignIn = () => {
   const [error, setError] = useState('')
   const { signInWithGoogle } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+  
+  // Get the page the user was trying to access before being redirected to sign-in
+  const from = location.state?.from?.pathname || '/'
 
   const handleGoogleSignIn = async () => {
     try {
@@ -18,7 +22,7 @@ const SignIn = () => {
       if (error) {
         setError(error.message)
       } else {
-        navigate('/')
+        navigate(from, { replace: true })
       }
     } catch (err) {
       setError('An unexpected error occurred')
