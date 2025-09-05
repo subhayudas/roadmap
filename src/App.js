@@ -5,6 +5,7 @@ import Navigation from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
 import FrontEnd from './pages/FrontEnd';
 import BackEnd from './pages/BackEnd';
+import Android from './pages/Android';
 import TechStacks from './pages/TechStacks';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -45,6 +46,7 @@ function App() {
               } />
               <Route path="/frontend" element={<FrontEnd />} />
               <Route path="/backend" element={<BackEnd />} />
+              <Route path="/android" element={<Android />} />
               <Route path="/tech-stacks" element={<TechStacks />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
