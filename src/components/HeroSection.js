@@ -10,7 +10,7 @@ const HeroSection = React.forwardRef(function HeroSection({
   title = "Master Web Development",
   subtitle = {
     regular: "Your complete roadmap to becoming a ",
-    gradient: "full-stack developer.",
+    gradient: "Software Developer.",
   },
   description = "",
   gridOptions,
