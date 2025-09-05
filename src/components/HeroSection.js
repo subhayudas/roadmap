@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { cn } from "../lib/utils"
 import { ChevronRight, Star } from "lucide-react"
 import { UnicornBackground } from "./UnicornBackground"
+import { useAuth } from "../contexts/AuthContext"
 
 const HeroSection = React.forwardRef(function HeroSection({
   className,
@@ -15,6 +16,7 @@ const HeroSection = React.forwardRef(function HeroSection({
   gridOptions,
   ...props
 }, ref) {
+  const { user } = useAuth();
   return (
     <UnicornBackground className={cn("min-h-screen", className)} ref={ref} {...props}>
       <section className="relative max-w-full mx-auto">
@@ -25,10 +27,22 @@ const HeroSection = React.forwardRef(function HeroSection({
               <ChevronRight className="inline w-4 h-4 ml-2 group-hover:translate-x-1 duration-300" />
             </h1>
             <h2 className="text-4xl tracking-tighter font-geist bg-clip-text text-transparent md:text-6xl bg-[linear-gradient(180deg,_#FFFFFF_0%,_rgba(255,_255,_255,_0.9)_100%)] dark:bg-[linear-gradient(180deg,_#FFFFFF_0%,_rgba(255,_255,_255,_0.85)_100%)] text-left">
-              {subtitle.regular}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 dark:from-purple-200 dark:to-pink-200">
-                {subtitle.gradient}
-              </span>
+              {user ? (
+                <>
+                  Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">{user.user_metadata?.full_name || user.email?.split('@')[0]}</span>!
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 dark:from-purple-200 dark:to-pink-200">
+                    Continue your learning journey.
+                  </span>
+                </>
+              ) : (
+                <>
+                  {subtitle.regular}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 dark:from-purple-200 dark:to-pink-200">
+                    {subtitle.gradient}
+                  </span>
+                </>
+              )}
             </h2>
             {description && (
               <p className="max-w-2xl text-gray-200 dark:text-gray-100 font-medium">
@@ -74,6 +88,24 @@ const HeroSection = React.forwardRef(function HeroSection({
                 </div>
               </span>
             </div>
+
+            {/* Auth Buttons for non-authenticated users */}
+            {!user && (
+              <div className="flex flex-col sm:flex-row items-start justify-start gap-4 mt-6">
+                <Link
+                  to="/signup"
+                  className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-semibold rounded-full hover:from-orange-600 hover:to-amber-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                >
+                  Get Started Free
+                </Link>
+                <Link
+                  to="/signin"
+                  className="inline-flex items-center justify-center px-8 py-3 bg-white/10 text-white font-semibold rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm"
+                >
+                  Sign In
+                </Link>
+              </div>
+            )}
 
             {/* GitHub Star Button */}
             <div className="mt-6">

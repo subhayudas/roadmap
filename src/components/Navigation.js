@@ -3,11 +3,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { useAuth } from "../contexts/AuthContext";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user, signOut } = useAuth();
 
   // Navigation items
   const navigationItems = [
@@ -324,6 +326,45 @@ const Navigation = () => {
               </AnimatePresence>
             </div>
 
+            {/* Auth Buttons */}
+            {user ? (
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <img 
+                    src={user.user_metadata?.avatar_url || `https://ui-avatars.com/api/?name=${user.email}&background=random`}
+                    alt="Profile" 
+                    className="w-8 h-8 rounded-full border-2 border-orange-400"
+                  />
+                  <span className="text-white text-sm font-medium">
+                    {user.user_metadata?.full_name || user.email?.split('@')[0]}
+                  </span>
+                </div>
+                <motion.button
+                  onClick={signOut}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-4 py-2 text-white hover:text-orange-400 transition-colors duration-300 border border-white/20 hover:border-orange-400/50 rounded-lg"
+                >
+                  Sign Out
+                </motion.button>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-3">
+                <Link
+                  to="/signin"
+                  className="text-white hover:text-orange-400 transition-colors duration-300 px-4 py-2 rounded-lg hover:bg-white/10"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/signup"
+                  className="bg-gradient-to-r from-orange-500 to-amber-500 text-white px-4 py-2 rounded-lg hover:from-orange-600 hover:to-amber-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            )}
+
             {/* Social Links */}
             <div className="flex items-center space-x-5">
               <motion.a
@@ -436,6 +477,56 @@ const Navigation = () => {
                     </motion.div>
                   ))}
                 </div>
+              </motion.div>
+
+              {/* Auth Section for Mobile */}
+              <motion.div
+                className="py-3 border-t border-white/10"
+                variants={menuItemVariants}
+              >
+                {user ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3 px-3">
+                      <img 
+                        src={user.user_metadata?.avatar_url || `https://ui-avatars.com/api/?name=${user.email}&background=random`}
+                        alt="Profile" 
+                        className="w-10 h-10 rounded-full border-2 border-orange-400"
+                      />
+                      <div>
+                        <p className="text-white font-medium">
+                          {user.user_metadata?.full_name || user.email?.split('@')[0]}
+                        </p>
+                        <p className="text-gray-400 text-sm">{user.email}</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        signOut();
+                        handleLinkClick();
+                      }}
+                      className="w-full bg-red-500/20 border border-red-500/30 text-red-300 font-medium py-3 px-4 rounded-xl text-center hover:bg-red-500/30 transition-all duration-300"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <Link
+                      to="/signin"
+                      onClick={handleLinkClick}
+                      className="block w-full bg-white/10 text-white font-medium py-3 px-4 rounded-xl text-center hover:bg-white/20 transition-all duration-300"
+                    >
+                      Sign In
+                    </Link>
+                    <Link
+                      to="/signup"
+                      onClick={handleLinkClick}
+                      className="block w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white font-medium py-3 px-4 rounded-xl text-center hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300"
+                    >
+                      Sign Up
+                    </Link>
+                  </div>
+                )}
               </motion.div>
 
               <motion.div
